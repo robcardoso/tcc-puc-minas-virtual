@@ -1,0 +1,241 @@
+
+
+
+
+
+
+
+<div class="container-fluid" >
+
+  <div class="container">
+
+    <div class="row justify-content-center">
+
+      <div class="col-md-8 col-sm-8 ">
+
+
+        <div *ngIf="!agendadaSucesso">
+
+
+        <h4 class="text-center">Agende sua consulta ou de seu dependente</h4>
+
+        <form class="form mt-4" [formGroup]="novaConsultaForm" (submit)="agendarConsulta()">
+
+          <div *ngIf="escolherMedico">
+
+            <div class="row">
+
+              <div class="form-group col-4">
+                <label for="estado" >Estado</label>
+                <select class="form-control" id="estado" formControlName="estadoControl" >
+                  <option selected value="">Selecione o Estado</option>
+                 <option *ngFor="let estado of estadosBr " [value]="estado.Sigla"> {{ estado.Nome }}</option>
+                </select>
+               </div>
+
+               <div class="form-group col-8" >
+                <label for="cidade" >Cidade</label>
+                <select class="form-control" id="cidade" formControlName="cidadeControl" >
+                  <option selected value="">Selecione a Cidade</option>
+                  <option *ngFor="let cidade of cidadesBrAtendimento " [value]="cidade.ID"> {{ cidade.Nome }}</option>
+                </select>
+               </div>
+
+            </div>
+
+               <div class="form-group">
+                <label for="conveniado">Conveniado</label>
+              <select class="form-control" id="conveniado" formControlName="associadosControl" >
+                <option *ngFor="let associados of dadosAssociados " [value]="associados.id"> {{ associados.nome }}</option>
+              </select>
+
+             </div>
+
+             <div class="form-group">
+               <ul class="list-group" id="prestador" *ngFor="let medico of dadosPrestador">
+                <li class="list-group-item mt-1 "> <span class="titulo"> Doutor(a): </span>{{medico.nome}} - {{ medico.endereco}} - {{ medico.tel}}
+                  <div>
+                    <span dir="ltr"><a dir="ltr" class=" small btn btn-primary" (click)="selecionaMedico(medico)">Agendar</a> </span>
+                  </div>
+
+                </li>
+
+               </ul>
+             </div>
+
+
+          </div>
+
+          <div *ngIf="!escolherMedico">
+            <div class="mb-2">
+              <span class="titulo">Agendando consulta com Dr.(a): {{ medicoSelecionado }}</span>
+            </div>
+
+            <div class="form-group">
+              <label>Escolha a data</label>
+              <input type="date" placeholder="Usuário" class="form-control" formControlName="dataControl"  />
+
+            </div>
+
+
+            <div *ngIf="this.dataFormatada">
+              <!-- <div class="form-group">
+                <p class="titulo">Escolha o horário</p>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="opcao1">
+                  <label class="form-check-label" for="exampleRadios1">
+                    08:00 Hs
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="opcao2">
+                  <label class="form-check-label" for="exampleRadios2">
+                    09:00 Hs
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="opcao2">
+                  <label class="form-check-label" for="exampleRadios2">
+                    10:00 Hs
+                  </label>
+                </div>
+              </div> -->
+
+
+              <div>
+                <div class="text-center mt-5">
+                  <div *ngIf="!radioSel">
+                    <p class="titulo">Selecione a hora: </p>
+                  </div>
+
+                  <div *ngIf="radioSel">
+                    <p class="titulo">A hora escolhida foi: {{ radioSel}}</p>
+                  </div>
+                  <div class="form-group">
+                    <ul class="list-group">
+                          <li class="list-group-item"  *ngFor="let item of itemsList">
+                            <!-- <input type="radio" [(ngModel)]="radioSelected" name="list_name" value="{{item.value}}" (change)="onItemChange(item)"/>  -->
+                            <input type="radio" formControlName="radioControl" value="{{item.value}}" (change)="onItemChange(item)"/>
+                            {{item.name}}
+
+                          </li>
+                    </ul>
+                  </div>
+
+                  </div>
+
+
+
+              </div>
+
+
+
+
+
+
+
+
+
+              <p class="titulo mt-3">Informe dados do Paciente</p>
+            <div class="form-group">
+              <input placeholder="Nome Completo" class="form-control" formControlName="fullName" />
+              <app-mensagem *ngIf="novaConsultaForm.get('fullName')?.errors && novaConsultaForm.get('fullName')?.touched"
+                mensagem="Nome Incorreto">
+              </app-mensagem>
+            </div>
+
+            <div class="form-group">
+              <input placeholder="e-mail" class="form-control" formControlName="email" />
+              <app-mensagem *ngIf="novaConsultaForm.get('email')?.errors?.required && novaConsultaForm.get('email')?.touched"
+                mensagem="E-mail obrigatório">
+              </app-mensagem>
+              <app-mensagem *ngIf="novaConsultaForm.get('email')?.errors?.email && novaConsultaForm.get('email')?.touched"
+                mensagem="E-mail no formato incorreto">
+              </app-mensagem>
+            </div>
+
+            <div class="form-group">
+              <input placeholder="Telefone" class="form-control" formControlName="userName" />
+            </div>
+
+            <div class="form-group">
+              <input placeholder="Número da carteirinha " class="form-control" formControlName="userName" />
+            </div>
+
+
+            <button class="btn btn-primary btn-block">Agendar</button>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+
+        </form>
+        <br>
+
+
+
+        </div>
+
+
+
+
+
+
+       <div *ngIf="agendadaSucesso">
+         <h5>Consulta agendada com sucesso</h5>
+         <div>
+           <p><span class="titulo">Dr.(a): {{medicoSelecionado}}</span></p>
+         </div>
+         <div>
+          <p><span class="titulo">Dia: </span>{{dataFormatada}} - <span class="titulo">hora: </span> {{radioSel}}</p>
+        </div>
+        <div>
+          <p><span class="titulo">Endereço: </span>{{medicoEndereco}} <span class="titulo">tel: </span> {{medicoTel}}</p>
+        </div>
+        <div>
+          <p><span class="titulo">Cidade: </span>{{cidadeAgendada}} -<span class="titulo">UF: </span>  {{estadoAgendado}}</p>
+        </div>
+
+
+       </div>
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+</div>

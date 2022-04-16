@@ -1,0 +1,174 @@
+[
+  {
+    "ID": "1",
+    "Nome": "Belo Horizonte",
+    "Estado": "1",
+    "associados": [
+      {
+        "id": "1",
+        "nome": "Clínica Médica",
+        "prestadores": [
+          {
+            "codPrestador": "9901",
+            "nome": "João Paulo",
+            "endereco": "Rua Alves, nº 10",
+            "tel": "(01) 1111-1111"
+          },
+          {
+            "codPrestador": "9902",
+            "nome": "Maria José",
+            "endereco": "Rua Candido, nº 352",
+            "tel": "(02) 2222-2222"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "nome": "Pediatria",
+        "prestadores": [
+          {
+            "codPrestador": "9903",
+            "nome": "Paulo",
+            "endereco": "Rua Laura, nº 155",
+            "tel": "(03) 3333-3333"
+          },
+          {
+            "codPrestador": "9904",
+            "nome": "Fátima",
+            "endereco": "Rua do Meio, nº 778",
+            "tel": "(04) 4444-4444"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "ID": "2",
+    "Nome": "Lavras",
+    "Estado": "1",
+    "associados": [
+      {
+        "id": "1",
+        "nome": "Clínica Médica",
+        "prestadores": [
+          {
+            "codPrestador": "9905",
+            "nome": "Miguel",
+            "endereco": "Rua Penha, nº 155",
+            "tel": "(05) 5555-5555"
+          },
+          {
+            "codPrestador": "9906",
+            "nome": "Gabriel",
+            "endereco": "Rua da Escola, nº 78",
+            "tel": "(06) 6666-6060"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "nome": "Pediatria",
+        "prestadores": [
+          {
+            "codPrestador": "9907",
+            "nome": "Rafael",
+            "endereco": "Rua Penha, nº 155",
+            "tel": "(05) 1555-0455"
+          },
+          {
+            "codPrestador": "9908",
+            "nome": "Daniel",
+            "endereco": "Rua Penha, nº 158",
+            "tel": "(05) 5555-7779"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "ID": "3",
+    "Nome": "Santos",
+    "Estado": "2",
+    "associados": [
+      {
+        "id": "1",
+        "nome": "Oftalmologia",
+        "prestadores": [
+          {
+            "codPrestador": "9901",
+            "nome": "João Amigo",
+            "endereco": "Rua Alves, nº 10",
+            "tel": "(01) 1111-1111"
+          },
+          {
+            "codPrestador": "9902",
+            "nome": "Maria Paula",
+            "endereco": "Rua Candido, nº 352",
+            "tel": "(02) 2222-2222"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "nome": "Dentista",
+        "prestadores": [
+          {
+            "codPrestador": "9903",
+            "nome": "Paulo Vaz",
+            "endereco": "Rua Laura, nº 155",
+            "tel": "(03) 3333-3333"
+          },
+          {
+            "codPrestador": "9904",
+            "nome": "Fátima da Luz",
+            "endereco": "Rua do Meio, nº 778",
+            "tel": "(04) 4444-4444"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "ID": "4",
+    "Nome": "Guarujá",
+    "Estado": "2",
+    "associados": [
+      {
+        "id": "1",
+        "nome": "Cardiologia",
+        "prestadores": [
+          {
+            "codPrestador": "9901",
+            "nome": "João Amigo",
+            "endereco": "Rua Alves, nº 10",
+            "tel": "(01) 1111-1111"
+          },
+          {
+            "codPrestador": "9902",
+            "nome": "Maria Paula",
+            "endereco": "Rua Candido, nº 352",
+            "tel": "(02) 2222-2222"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "nome": "Cirurgia Geral",
+        "prestadores": [
+          {
+            "codPrestador": "9903",
+            "nome": "Paulo Vaz",
+            "endereco": "Rua Laura, nº 155",
+            "tel": "(03) 3333-3333"
+          },
+          {
+            "codPrestador": "9904",
+            "nome": "Fátima da Luz",
+            "endereco": "Rua do Meio, nº 778",
+            "tel": "(04) 4444-4444"
+          }
+        ]
+      }
+    ]
+  }
+]

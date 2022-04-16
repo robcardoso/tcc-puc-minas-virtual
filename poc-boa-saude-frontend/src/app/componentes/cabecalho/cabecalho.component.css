@@ -1,0 +1,22 @@
+.barra-cabecalho {
+  background-color: #007bff;
+}
+
+.titulo {
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-text a {
+  color: white;
+}
+/* #007bff */
+
+.icone{
+  color: white;
+}
+
+.logout{
+  color: white;
+  cursor: pointer;
+}

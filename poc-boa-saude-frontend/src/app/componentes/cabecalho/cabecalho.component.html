@@ -1,0 +1,22 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-light barra-cabecalho mb-5">
+    <a class="navbar-brand titulo">Boa Saúde</a>
+    <div *ngIf="user$ | async as user">
+      <div *ngIf="user.sub ; else login">
+        <i class="fa fa-user-circle mr-2 icone"></i>
+        <span class="mr-2 titulo">{{user.sub}}</span>
+        <a class="logout" (click)="logout()">Logout</a>
+      </div>
+
+
+    </div>
+
+  </nav>
+  <ng-template #login>
+    <span class="navbar-text ">
+      <a [routerLink]="['']" class="titulo">Login</a>
+
+    </span>
+  </ng-template>
+
+</header>

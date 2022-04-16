@@ -1,0 +1,36 @@
+
+  {
+    "estados": [
+      {
+        "sigla": "SP",
+        "nome": "São Paulo",
+        "codEstado": 1,
+        "cidades": [
+          {
+            "nomeCidade": "Santos",
+            "codCidade": 101
+          },
+          {
+            "nomeCidade": "São Paulo",
+            "codCidade": 102
+          }
+        ]
+      },
+      {
+        "sigla": "MG",
+        "nome": "Minas Gerais",
+        "codEstado": 2,
+        "cidades": [
+          {
+            "nomeCidade": "Belo Horizonte",
+            "codCidade": 103
+          },
+          {
+            "nomeCidade": "Lavras",
+            "codCidade": 104
+          }
+        ]
+      }
+    ]
+  }
+

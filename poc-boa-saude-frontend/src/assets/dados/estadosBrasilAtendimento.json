@@ -1,0 +1,12 @@
+[
+  {
+    "ID": "1",
+    "Sigla": "MG",
+    "Nome": "Minas Gerais"
+  },
+  {
+    "ID": "2",
+    "Sigla": "SP",
+    "Nome": "São Paulo"
+  }
+]
