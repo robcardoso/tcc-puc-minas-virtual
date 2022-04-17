@@ -27,7 +27,7 @@ public class AssociadoController {
         this.associadoService = associadoService;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','PRESTADOR','CONVENIADO')")
     @PostMapping
     public ResponseEntity<Object> salvarAssociado(@RequestBody @Valid AssociadoDto associadoDto) {
 
@@ -58,32 +58,5 @@ public class AssociadoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Associado não encontrado.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(associadoModelOptional.get());
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteAssociado(@PathVariable(value = "id") UUID id){
-        Optional<AssociadoModel> associadoModelOptional = associadoService.findById(id);
-        if (!associadoModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Associado não encontrado.");
-        }
-        associadoService.delete(associadoModelOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Associado excluído com sucesso.");
-    }
-
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> updateAssociado(@PathVariable(value = "id") UUID id,
-                                                  @RequestBody @Valid AssociadoDto associadoDto){
-        Optional<AssociadoModel> associadoModelOptional = associadoService.findById(id);
-        if (!associadoModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Associado não encontrado.");
-        }
-        var associadoModel = new AssociadoModel();
-        BeanUtils.copyProperties(associadoDto, associadoModel);
-        associadoModel.setId(associadoModelOptional.get().getId());
-        associadoModel.setDataRegistro(associadoModelOptional.get().getDataRegistro());
-        associadoModel.setDataAtualizacaoRegistro(LocalDateTime.now(ZoneId.of("UTC")));
-        return ResponseEntity.status(HttpStatus.OK).body(associadoService.salvar(associadoModel));
     }
 }

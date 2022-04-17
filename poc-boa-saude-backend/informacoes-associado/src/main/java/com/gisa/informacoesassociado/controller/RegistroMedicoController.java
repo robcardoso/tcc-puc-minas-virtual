@@ -24,16 +24,6 @@ public class RegistroMedicoController {
     @Autowired
     RegistroMedicoService registroMedicoService;
 
-    @PreAuthorize("hasAnyRole('PRESTADOR')")
-    @PostMapping("/gravar-bd")
-    public ResponseEntity<Object> salvarRegistroMedicoNoBanco(@RequestBody @Valid RegistroMedicoDto registroMedicoDto) {
-        var registroMedicoModel = new RegistroMedicoModel();
-        BeanUtils.copyProperties(registroMedicoDto, registroMedicoModel);
-        registroMedicoModel.setDataRegistro(LocalDateTime.now(ZoneId.of("UTC")));
-        registroMedicoModel.setDataAtualizacaoRegistro(LocalDateTime.now(ZoneId.of("UTC")));
-        return ResponseEntity.status(HttpStatus.CREATED).body(registroMedicoService.salvar(registroMedicoModel));
-    }
-
     @PreAuthorize("hasAnyRole('PRESTADOR','CONVENIADO')")
     @PostMapping
     public ResponseEntity<Object> salvarRegistroMedicoComoMensagem(@RequestBody @Valid RegistroMedicoDto registroMedicoDto) {
@@ -42,12 +32,6 @@ public class RegistroMedicoController {
         registroMedicoModel.setDataRegistro(LocalDateTime.now(ZoneId.of("UTC")));
         registroMedicoModel.setDataAtualizacaoRegistro(LocalDateTime.now(ZoneId.of("UTC")));
         return ResponseEntity.status(HttpStatus.CREATED).body(registroMedicoService.salvarComoMensagem(registroMedicoModel));
-    }
-
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @GetMapping
-    public ResponseEntity<List<RegistroMedicoModel>> getAllRegistrosMedicos(){
-        return ResponseEntity.status(HttpStatus.OK).body(registroMedicoService.findAll());
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','PRESTADOR','CONVENIADO')")
@@ -60,19 +44,9 @@ public class RegistroMedicoController {
         return ResponseEntity.status(HttpStatus.OK).body(registroMedicoModelOptional.get());
     }
 
-    @PreAuthorize("hasAnyRole('PRESTADOR','CONVENIADO')")
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> updateRegistroMedico(@PathVariable(value = "id") UUID id,
-                                                  @RequestBody @Valid RegistroMedicoDto registroMedicoDto){
-        Optional<RegistroMedicoModel> registroMedicoModelOptional = registroMedicoService.findById(id);
-        if (!registroMedicoModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro médico não encontrado.");
-        }
-        var registroMedicoModel = new RegistroMedicoModel();
-        BeanUtils.copyProperties(registroMedicoDto, registroMedicoModel);
-        registroMedicoModel.setId(registroMedicoModelOptional.get().getId());
-        registroMedicoModel.setDataRegistro(registroMedicoModelOptional.get().getDataRegistro());
-        registroMedicoModel.setDataAtualizacaoRegistro(LocalDateTime.now(ZoneId.of("UTC")));
-        return ResponseEntity.status(HttpStatus.OK).body(registroMedicoService.salvar(registroMedicoModel));
+    @PreAuthorize("hasAnyRole('ADMIN','PRESTADOR','CONVENIADO')")
+    @GetMapping
+    public ResponseEntity<List<RegistroMedicoModel>> getAllRegistrosMedicos(){
+        return ResponseEntity.status(HttpStatus.OK).body(registroMedicoService.findAll());
     }
 }

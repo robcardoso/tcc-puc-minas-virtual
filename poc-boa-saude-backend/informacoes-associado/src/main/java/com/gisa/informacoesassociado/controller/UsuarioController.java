@@ -5,7 +5,6 @@ import com.gisa.informacoesassociado.dto.UsuarioDto;
 import com.gisa.informacoesassociado.model.AuthToken;
 import com.gisa.informacoesassociado.model.LoginUser;
 import com.gisa.informacoesassociado.model.UsuarioModel;
-import com.gisa.informacoesassociado.service.RoleService;
 import com.gisa.informacoesassociado.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -30,9 +28,6 @@ public class UsuarioController {
 
     @Autowired
     private TokenProvider jwtTokenUtil;
-
-    @Autowired
-    private RoleService roleService;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -51,7 +46,6 @@ public class UsuarioController {
         return ResponseEntity.ok(new AuthToken(token));
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value="/salvar", method = RequestMethod.POST)
     public UsuarioModel saveUser(@RequestBody UsuarioDto usuario){
         return usuarioService.save(usuario);
@@ -62,16 +56,4 @@ public class UsuarioController {
     public ResponseEntity<List<UsuarioModel>> listarTodos() {
         return ResponseEntity.ok(usuarioService.findAll());
     }
-
-//    @PreAuthorize("hasRole('ADMIN')")
-//    @RequestMapping(value="/adminping", method = RequestMethod.GET)
-//    public String adminPing(){
-//        return "Apenas um Admin pode ler isto.";
-//    }
-//
-//    @PreAuthorize("hasRole('USUARIO')")
-//    @RequestMapping(value="/userping", method = RequestMethod.GET)
-//    public String userPing(){
-//        return "Apenas um usuário pode ler isto.";
-//    }
 }

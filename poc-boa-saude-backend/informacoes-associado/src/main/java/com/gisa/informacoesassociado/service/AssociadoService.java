@@ -14,35 +14,35 @@ import java.util.UUID;
 public class AssociadoService {
 
     @Autowired
-    AssociadoDao associadoRepository;
+    AssociadoDao associadoDao;
 
-    public AssociadoService(AssociadoDao associadoRepository) {
-        this.associadoRepository = associadoRepository;
+    public AssociadoService(AssociadoDao associadoDao) {
+        this.associadoDao = associadoDao;
     }
 
     @Transactional
     public AssociadoModel salvar(AssociadoModel associadoModel) {
-        return associadoRepository.save(associadoModel);
+        return associadoDao.save(associadoModel);
     }
 
     public boolean existsByCpf(String cpf) {
-        return associadoRepository.existsByCpf(cpf);
+        return associadoDao.existsByCpf(cpf);
     }
 
     public boolean existsByRg(String rg) {
-        return associadoRepository.existsByCpf(rg);
+        return associadoDao.existsByCpf(rg);
     }
 
     public List<AssociadoModel> findAll() {
-        return associadoRepository.findAll();
+        return associadoDao.findAll();
     }
 
     public Optional<AssociadoModel> findById(UUID id) {
-        return associadoRepository.findById(id);
+        return associadoDao.findById(id);
     }
 
     @Transactional
     public void delete(AssociadoModel associadoModel) {
-        associadoRepository.delete(associadoModel);
+        associadoDao.delete(associadoModel);
     }
 }
